@@ -1,0 +1,640 @@
+/* ---------------------------------––----––-–---------------------------------––----––-– UTILS */
+@import url(column.css);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+@font-face {
+    font-family: OpenSans;
+    src: url(../font/OpenSans.ttf);
+}
+@font-face {
+    font-family: OpenSauce;
+    src: url(../font/OpenSauceSans-Light.ttf);
+}
+@font-face {
+    font-family: Twister;
+    src: url(../font/Twister.ttf);
+}
+@font-face {
+    font-family: Anton;
+    src: url(../font/Anton-Regular.ttf) format('truetype');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior:smooth
+}
+body {
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'OpenSans';
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+.custom-btn {
+    margin-top: 30px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: white;
+}
+.custom-btn-below {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: lightblue;
+}
+
+input{
+    background-color: white;
+    border: 1px solid #CBCBCB;
+    width: 100%;
+    border-radius: 10px;
+    color: black;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+input[type=radio]{
+    width: unset;
+}
+input[type=button]{
+    width: 8rem;
+    border-radius: 50px;
+}
+input[type=button]:hover{
+    background: #DEE1E6;
+    cursor: pointer;
+}
+button :hover{
+    background: #DEE1E6;
+    cursor: pointer;
+}
+a :hover{
+    background: #DEE1E6;
+    cursor: pointer;
+}
+textarea{
+    background-color: white;
+    border: 1px solid #CBCBCB;
+    width: 100%;
+    border-radius: 5px;
+    color: black;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+select{
+    background-color: white;
+    border: 1px solid #CBCBCB;
+    width: 100%;
+    border-radius: 10px;
+    color: black;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+.whatsapp{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:20px;
+	right:20px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+}
+
+.whatsapp i{
+	margin-top:16px;
+}
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– NAVBAR*/
+/* NAVBAR STYLING STARTS */
+/* CSS Document */
+
+
+.navbar{
+    height: 100px;
+    width: 100%;
+    padding: 33px 30px;
+    background-color: #00C2CB;
+    position: fixed;
+    /* position: relative; */
+    font-family: 'OpenSauce';
+    z-index: 1;
+  }
+  .navbar .nav-header{
+    display: inline;
+  }
+  .navbar .nav-header .nav-logo{
+    display: inline-block;
+    margin-top: -7px;
+  }
+  .navbar .nav-links{
+    margin-top: 5px;
+    display: inline;
+    float: right;
+    font-size: 15px;
+  }
+
+  .navbar .nav-links .loginBtn{
+    display: inline-block;
+    padding: 5px 15px;
+    margin-left: 20px;
+    font-size: 17px;
+    color: #00C2CB;
+  }
+  .navbar .nav-links a {
+    padding: 10px 12px;
+    text-decoration: none;
+    font-weight: 550;
+    color: white;
+  }
+  /* Hover effects */
+  .navbar .nav-links a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  /* responsive navbar toggle button */
+  .navbar #nav-check, .navbar .nav-btn{
+    display: none;
+  }
+
+  @media (max-width:700px) {
+    .navbar .nav-btn{
+      display: inline-block;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    .navbar .nav-btn label {
+      display: inline-block;
+      width: 80px;
+      height: 70px;
+      padding: 25px;
+    }
+    .navbar .nav-btn label span {
+      display: block;
+      height: 10px;
+      width: 25px;
+      border-top: 3px solid #eee;
+    }
+    .navbar .nav-btn label:hover, .navbar #nav-check:checked ~ .nav-btn label {
+      background-color: #00C2CB;
+      transition: all 0.5s ease;
+    }
+    .navbar .nav-links{
+      margin-top: 0;
+      position: absolute;
+      display: block;
+      text-align: center;
+      width: 50%;
+      background-color: #00C2CB;
+      transition: all 0.3s ease-in;
+      overflow-y: hidden;
+      top: 70px;
+      right: 0px;
+    }
+    .navbar .nav-links a {
+      display: block;
+    }
+
+    /* when nav toggle button not checked */
+    .navbar #nav-check:not(:checked) ~ .nav-links {
+      height: 0px;
+    }
+
+    /* when nav toggle button is checked */
+    .navbar #nav-check:checked ~ .nav-links {
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+    }
+    .navbar .nav-links .loginBtn {
+      padding: 10px 40px ;
+      margin: 20px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #00C2CB;
+    }
+    /* Responsive dropdown code */
+    .navbar .nav-links .dropdown, .navbar .nav-links .dropdown2 {
+      float: none;
+      width: 100%;
+    }
+    .navbar .nav-links .drop-content, .navbar .nav-links .drop-content2 {
+      position: relative;
+      background-color: rgb(220, 220, 250);
+      top: 0px;
+      left: 0px;
+    }
+    /* Text color */
+    .navbar .nav-links .drop-content a {
+      color: white;
+    }
+
+  }
+
+  /* Dropdown menu CSS code */
+  .dropdown{
+    position: relative;
+    display: inline-block;
+  }
+  .drop-content, .drop-content2 {
+    display: none;
+    position: absolute;
+    background-color: #00C2CB;
+    min-width: 120px;
+    font-size: 12px;
+    top: 28px;
+    z-index: 1;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+  }
+  /* on hover show dropdown */
+  .dropdown:hover .drop-content, .dropdown2:hover .drop-content2 {
+    display: block;
+  }
+  /* drondown links */
+  .drop-content a {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgb(197, 197, 250);
+    display: block;
+    transition: all 0.5s ease !important;
+  }
+  .dropBtn .drop-content a:hover {
+    background-color: rgb(230, 230, 230);
+  }
+  .dropdown:hover .dropBtn, .dropdown2:hover .dropBtn2 {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .dropdown2 .drop-content2 {
+    position: absolute;
+    left: 120px;
+    top: 126px;
+  }
+  .dropBtn2 i {
+    margin-left: 15px;
+  }
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 1 */
+.jumbotron {
+    width: 100%;
+    height: 100vh;
+    background-color: #F7C7C7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: url('img1.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.jumbotron div {
+    text-align: center;
+    width: 40vw;
+    /* background: rgb(0,0,0);
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(152,152,157,1) 35%, rgba(255,255,255,1) 100%);
+    opacity: 0.4; */
+    /* background-color: rgba(0, 0, 0, 0.3) !important; */
+    margin-top: 450px;
+    margin-bottom: 0px;
+    padding: 10px 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 70px;
+    font-weight: bold;
+    border-radius: 50%;
+    font-family: 'Twister';
+    font-weight: 900;
+	/* -webkit-text-stroke-width: 0.01px;
+    -webkit-text-stroke-color: black; */
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 2 */
+.box-state {
+    width: 50%;
+    height: 300px;
+    background-color: white;
+}
+
+.content2{
+    min-height: 50vh;
+}
+.content2-text{
+    padding: 50px;
+    margin:auto;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+.content2-text span{
+    font-size:30px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.bg-2 {
+    background:url(img2.jpeg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;;
+    min-height:100vh;
+}
+.bg-3 {
+    background:url(img3.jpeg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.bg-4 {
+    background:url(img4.jpeg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 3 */
+.jumbotron-state1 {
+    width: 100%;
+    height: 100vh;
+    background-color: #F7C7C7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.jumbotron-state1 h1 {
+    color: black;
+    font-size: 50px;
+}
+.jumbotron-state1 .btn-state1 {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    margin-top: 550px;
+    margin-bottom: 20px;
+    padding: 10px 50px;
+    background-color: white;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 25px;
+}
+.jumbotron-state1 div {
+    /* margin-top: 550px;
+    margin-bottom: 20px; */
+    padding: 10px 5vw;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    width: 70vw;
+    margin-bottom: -300px;
+    background: #00C2CB;
+    text-align: center;
+    padding: 3rem 4rem;
+    color:white;
+}
+.bg-5 {
+    background:url(img5.jpeg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 4 - CONTENT 5 */
+.card{
+    display: flex;
+    height: 50vh;
+    color:white;
+}
+.card div{
+    margin: auto 50px;
+    text-align: left;
+}
+.card h1{
+    margin-bottom:15px;
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 6 - CONTENT 7 */
+.card .card-child{
+    margin: 20px;
+    padding: 80px 20px;
+    background: white;
+    width: 100%;
+    text-align: center;
+}
+.card.pricing{
+    height:unset;
+    color: black;
+}
+.card.pricing h1{
+    margin-bottom: 0;
+}
+.card.pricing p{
+    white-space: pre-line;
+    line-height: 30px;
+}
+.card.pricing .custom-btn{
+    background:#00C2CB;
+}
+.card.pricing :hover{
+    background: #CBCBCB;
+}
+.card.pricing .custom-btn:hover{
+    background: black;
+    color:white;
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 8 */
+.card.about{
+    background: #FF738E;
+    height: unset;
+}
+.card.about .card-child{
+    background: #FF738E;
+    color: white;
+    padding: 10vw;
+}
+.card.about .card-child h1{
+    font-size: 70px;
+}
+.card.about .card-child p{
+    font-size: 25px;
+}
+.card.about-image{
+    height:unset;
+    background:url(img5.jpeg) no-repeat center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– CONTENT 9 */
+.form{
+    padding:8rem 20vw;
+}
+.form h1{
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+.form .form-input{
+    margin: 10px;
+}
+#content9{
+    padding-top: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------––----––-–---------------------------------––----––-– Slideshow */
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100vw;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  /* color: #f2f2f2; */
+  color: black;
+  font-size: 45px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
