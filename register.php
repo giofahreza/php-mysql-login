@@ -1,3 +1,9 @@
+<?php
+    include('required.php');
+    if(!empty($_SESSION['user_id'])){
+        header('Location: dashboard.php');
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,9 +44,9 @@
                 </div>
 
                 <div class="nav-links">
-                    <a href="index.html">LOGIN</a>
+                    <a href="index.php">LOGIN</a>
 
-                    <a href="register.html">REGISTER</a>
+                    <a href="register.php">REGISTER</a>
 
                 </div>
 

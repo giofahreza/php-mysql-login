@@ -1,4 +1,13 @@
 <?php
+    session_start();
+    
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'tazkiya');
+
+    $db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+    if (mysqli_connect_errno()) echo "Failed to connect to MySQL: " . mysqli_connect_error();
     function dumping($data, $die=true){
         echo '<pre>';
         var_dump($data);
@@ -8,8 +17,8 @@
     }
 
     function email_check($email){
-        if(!empty($_POST['email'])){
-            $email1 = explode("@",$_POST['email']);
+        if(!empty($email)){
+            $email1 = explode("@",$email);
             if(!empty($email1[1])){
                 $email2 = explode(".", $email1[1]);
                 if(empty($email2[1])){
@@ -59,14 +68,4 @@
 
         return $check;
     }
-
-
-
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-    define('DB_NAME', 'tazkiya');
-
-    $db = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-    if (mysqli_connect_errno()) echo "Failed to connect to MySQL: " . mysqli_connect_error();
 ?>
