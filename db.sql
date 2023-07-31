@@ -10,4 +10,6 @@ CREATE TABLE `users` (
 
 INSERT INTO users
 (username, gender, country, email, password)
-VALUES('root', 'male', 'uk', 'mail@mail.com', 'a8f5f167f44f4964e6c998dee827110c');
+VALUES('root', 'male', 'uk', 'mail@mail.com', '$2y$10$eXNleRVnkso83Mu4SW1iPu4rFKGBT6qSdxJ6CDXnbptz2rP9MwDRO');
+
+ALTER TABLE users MODIFY COLUMN password varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;

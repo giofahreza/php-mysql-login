@@ -5,5 +5,5 @@
     }
 
     echo 'You are logged in. <a href="process.php">Click here</a> to log out.';
-    dumping($_SESSION);
+    dump($_SESSION);
 ?>
