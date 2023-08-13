@@ -151,4 +151,111 @@
             header("Location:index.php");
         }
     }
+
+    class upload{
+        private $mysql;
+        private $pdo;
+
+        public function __construct(){
+            $database = new Database();
+            $this->mysql = $database->mysqli();
+            $this->pdo = $database->pdo();
+        }
+
+        private function validateAltText($altText) {
+            if (empty($altText)) {
+                return "Alternate text cannot be empty.";
+            }
+            return "";
+        }
+        
+        private function validateFileType($fileType) {
+            $allowedTypes = array('image/jpeg', 'image/png', 'image/gif');
+            if (!in_array($fileType, $allowedTypes)) {
+                return "Invalid file type. It must be a JPEG, PNG, or GIF image.";
+            }
+            return "";
+        }
+        
+        private function validateFileSize($fileSize, $maxSize) {
+            if ($fileSize > $maxSize) {
+                return "File size exceeds the allowed limit.";
+            }
+            return "";
+        }
+        
+        private function generateDateCode() {
+            return date('dmY');
+        }
+        
+        private function uploadFile($file) {
+            $uploadDir = 'uploads/';
+            $fileName = $this->generateDateCode() . '_' . uniqid() . '_' . $file['name'];
+            $filePath = $uploadDir . $fileName;
+        
+            if ( !is_dir( $uploadDir ) ) {
+                mkdir( $uploadDir );
+            }
+        
+            if (move_uploaded_file($file['tmp_name'], $filePath)) {
+                return $filePath;
+            } else {
+                return false;
+            }
+        }
+        
+        public function process(){
+            try {
+                $pdo = new PDO('mysql:host=localhost;dbname=tazkiya', 'root', '');
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                die("Database connection failed: " . $e->getMessage());
+            }
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $altText = $_POST['alt_text'];
+                $image = $_FILES['image'];
+            
+                $altTextError = $this->validateAltText($altText);
+                $fileTypeError = $this->validateFileType($image['type']);
+                
+                $maxFileSize = 5 * 1024 * 1024; // 5MB in bytes
+                $fileSizeError = $this->validateFileSize($image['size'], $maxFileSize);
+            
+                if (empty($altTextError) && empty($fileTypeError) && empty($fileSizeError)) {
+                    $uploadedFilePath = $this->uploadFile($image);
+            
+                    if ($uploadedFilePath) {
+                        $insertQuery = "INSERT INTO images (path, alt_text) VALUES (?, ?)";
+                        $stmt = $pdo->prepare($insertQuery);
+                        $stmt->execute([$uploadedFilePath, $altText]);
+            
+                        header('Content-Type: application/json');
+                        http_response_code(201);
+                        echo json_encode([
+                            'message' => 'Upload successful.',
+                            'image_path' => $uploadedFilePath,
+                            'alt_text' => $altText
+                        ]);
+                        exit();
+                    } else {
+                        header('Content-Type: application/json');
+                        http_response_code(422);
+                        echo json_encode(['error' => 'Upload failed.']);
+                        exit();
+                    }
+                } else {
+                    header('Content-Type: application/json');
+                    http_response_code(422);
+                    echo json_encode([
+                        'error' => 'Validation failed.',
+                        'alt_text_error' => $altTextError,
+                        'file_type_error' => $fileTypeError,
+                        'file_size_error' => $fileSizeError
+                    ]);
+                    exit();
+                }
+            }
+        }
+    }
 ?>
